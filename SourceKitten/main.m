@@ -175,11 +175,11 @@ int printDocs(const char *sourcetext, NSArray *entities) {
             // 3: Print result
 
             const char *docs = xpc_dictionary_get_string(result, "key.doc.full_as_xml");
-            if (docs != nil) {
-                NSString *usr = @(xpc_dictionary_get_string(result, "key.usr"));
-                for (JAZEntity *entity in entities) {
-                    setDocs(entity, usr, @(docs));
-                }
+            const char *usr = xpc_dictionary_get_string(result, "key.usr");
+            NSString *usrString = usr ? @(xpc_dictionary_get_string(result, "key.usr")) : nil;
+            NSString *docsString = docs ? @(docs) : nil;
+            for (JAZEntity *entity in entities) {
+                setDocs(entity, usrString, docsString);
             }
         }
     }
@@ -200,6 +200,7 @@ int cursorinfo_playground() {
 
     const char *sourcetext = [[NSString stringWithContentsOfFile:arguments[2] encoding:NSUTF8StringEncoding error:nil] UTF8String];
 
+    if (sourcetext)
     {
         // 1: Build up XPC request to send to SourceKit
 
@@ -219,6 +220,8 @@ int cursorinfo_playground() {
 
         NSDictionary *dict = [NSDictionary dictionaryWithContentsOfXPCObject:result];
         return printDocs(sourcetext, entitiesInDict(dict));
+    } else {
+        printf("File not found\n");
     }
     return 1;
 }

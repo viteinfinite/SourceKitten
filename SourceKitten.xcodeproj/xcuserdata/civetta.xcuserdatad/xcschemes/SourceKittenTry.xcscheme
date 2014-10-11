@@ -42,7 +42,7 @@
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      launchStyle = "1"
+      launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
@@ -57,10 +57,7 @@
             </ActionContent>
          </ExecutionAction>
       </PostActions>
-      <PathRunnable
-         FilePath = "/Users/civetta/Works/Personal/SourceKitten/build/SourceKitten">
-      </PathRunnable>
-      <MacroExpansion>
+      <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E86501C219708D1C005F11E4"
@@ -68,7 +65,13 @@
             BlueprintName = "SourceKitten"
             ReferencedContainer = "container:SourceKitten.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "--swift_file /Users/civetta/Works/Personal/SourceKitten/build/ViewController.swift"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

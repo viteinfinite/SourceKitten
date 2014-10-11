@@ -245,12 +245,18 @@ NSString *generateTabs(NSUInteger numberOfTabs) {
 }
 
 - (NSString *)xmlDocsWithCurrentLevel:(NSUInteger)currentLevel {
+    
     NSMutableString *xml = [NSMutableString string];
     if (currentLevel == 0) {
         [xml appendString:@"<jazzy>\n"];
     }
     [xml appendString:generateTabs(currentLevel)];
-    [xml appendString:self.docs];
+    if (self.docs) {
+        [xml appendString:self.docs];
+    } else {
+        [xml appendFormat:@"<Entity><Name>%@</Name><USR>%@</USR></Entity>", self.name, self.usr];
+    }
+    
     [xml appendString:@"\n"];
     if (self.entities.count > 0) {
         NSRange closingRange = [xml rangeOfString:@"</" options:NSBackwardsSearch];
